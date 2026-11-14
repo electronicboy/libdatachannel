@@ -2300,6 +2300,9 @@ int rtcSetSctpSettings(const rtcSctpSettings *settings) {
 		if (settings->heartbeatIntervalMs > 0)
 			s.heartbeatInterval = milliseconds(settings->heartbeatIntervalMs);
 
+		if (settings->cwndBasedMaxBurst != 0)
+			s.cwndBasedMaxBurst = settings->cwndBasedMaxBurst > 0;
+
 		SetSctpSettings(std::move(s));
 		return RTC_ERR_SUCCESS;
 	});
